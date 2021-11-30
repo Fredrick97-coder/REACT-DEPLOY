@@ -1,0 +1,39 @@
+.showcase__section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #001a3b;
+  color: #fff;
+  font-family: 'Fira Code', monospace;
+  margin-top: 20px;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+.card-header.pt-5.fw-bold {
+  width: 55vmin;
+}
+
+.card-text {
+  font-family: 'Roboto Mono', monospace;
+  width: 55vmin;
+}
+
+.card-title {
+  width: 55vmin;
+}
+
+@media only screen and (max-width: 900px) {
+  .conatiner.card.bg-transparent {
+    visibility: visible;
+  }
+  .svg__container {
+    visibility: hidden;
+  }
+  .btn.btn-outline-light.btn-rounded {
+    width: 130px;
+  }
+}

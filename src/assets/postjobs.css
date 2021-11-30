@@ -1,0 +1,204 @@
+.post__container {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.post__title {
+  margin-bottom: 20px;
+  color: #001a3b;
+}
+
+.post__card__container {
+  background-color: white;
+  margin: 20px;
+  width: 100%;
+}
+
+.post__form {
+  height: fit-content;
+  margin: 20px;
+}
+
+.post__job__card {
+  display: flex;
+  flex-direction: column;
+}
+
+.input__section__one {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px;
+}
+
+.input__section__two {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px;
+}
+.input__section__three {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+
+  margin: 10px;
+}
+.input__section__four {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+
+  margin: 10px;
+}
+
+.left__input {
+  display: flex;
+  flex-direction: column;
+}
+
+.right__input {
+  display: flex;
+  flex-direction: column;
+}
+
+.center__input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input__section__five {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.post__input {
+  height: 40px;
+  width: 300px;
+  outline: none;
+  background-color: #fff;
+  color: black;
+  border: 1px solid;
+  padding-left: 10px;
+}
+
+.post__input.choose {
+  padding: 5px;
+}
+
+.post__textarea {
+  outline: none;
+  padding: 10px;
+}
+*/ .post__label {
+  color: #001a3b;
+}
+
+/* .post__card__container {
+  height: 100vh;
+}
+
+.post__form {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  height: auto;
+  width: 80vw;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #fff;
+}
+
+.post__job__card {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.input__section__two {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px;
+}
+.input__section__three {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+
+  margin: 10px;
+}
+.input__section__four {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+
+  margin: 10px;
+}
+
+.left__input {
+  display: flex;
+  flex-direction: column;
+}
+
+.right__input {
+  display: flex;
+  flex-direction: column;
+}
+
+.center__input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input__section__five {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.post__input {
+  height: 40px;
+  width: 300px;
+  outline: none;
+  background-color: #fff;
+  color: black;
+  border: 1px solid;
+  padding-left: 10px;
+}
+
+.post__input.choose {
+  padding: 5px;
+}
+
+.post__textarea {
+  outline: none;
+  padding: 10px;
+} */
+
+.post__btn__container {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  margin-bottom: 10px;
+  /* height: 40px;
+  width: 100px;
+  margin: 10px;
+  border: none;
+  border-radius: 50px; */
+}

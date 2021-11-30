@@ -1,0 +1,82 @@
+.contact__container {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #001a3b;
+  margin: 20px;
+}
+
+.title__info p {
+  text-align: center;
+  padding: 10px 50px;
+  width: fit-content;
+}
+.contact__card__container {
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: fit-content;
+}
+
+.contact__form__container {
+  height: fit-content;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.contact__form__container .input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 60px;
+}
+
+.input .contact__label {
+  color: #001a3b;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 10px 0px;
+}
+
+.contact__job__card {
+  margin: 20px;
+}
+.input .contact__input {
+  height: 35px;
+  width: 450px;
+  padding-left: 20px;
+  border: 1px solid;
+  outline: none;
+}
+.contact__btn {
+  height: 35px;
+  width: 100px;
+  border-radius: 50px;
+  outline: none;
+  border: none;
+  margin-bottom: 20px;
+  background: #001a3b;
+  color: #fff;
+}
+
+.contact__textarea {
+  padding: 10px;
+  outline: none;
+}
+
+.contact__number {
+  text-align: center;
+}

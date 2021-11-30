@@ -1,0 +1,137 @@
+.review__container {
+  height: auto;
+  width: 100%;
+  background: #002053;
+  margin-bottom: 20px;
+}
+
+.review__client {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.user__comment__container1 {
+  display: flex;
+  align-items: center;
+  max-width: 550px;
+  height: auto;
+  background: #fff;
+  margin: 20px 20px 20px 60px;
+  padding: 10px;
+  border-radius: 0 0 50px 0;
+}
+.user__comment__container2 {
+  display: flex;
+  align-items: center;
+  flex-flow: row-reverse;
+  max-width: 550px;
+  height: auto;
+  background: #fff;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 0 0 0 50px;
+}
+.section2 {
+  display: flex;
+  justify-content: flex-end;
+}
+.user__comment__container1 > img {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  padding: 10px;
+}
+
+.user__comment__container2 > img {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  padding: 10px;
+}
+
+.user__comments {
+  display: flex;
+  flex-direction: column;
+}
+
+.name__area1 {
+  margin-top: 40px;
+}
+
+.name__area2 {
+  margin-top: 40px;
+}
+
+.text-white {
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.arrow__left {
+  position: relative;
+  top: 335px;
+  z-index: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.arrow__left > svg {
+  font-size: 30px;
+  fill: #000;
+  cursor: pointer;
+}
+
+.arrow__right > svg {
+  font-size: 30px;
+  fill: #000;
+  cursor: pointer;
+}
+
+.arrow__right {
+  position: absolute;
+  top: 1567px;
+  right: 12px;
+  z-index: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+@media only screen and (max-width: 900px) {
+  .user__comment__container1 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+  }
+  .user__comment__container1 > img {
+    width: 100%;
+  }
+  .user__comment__container2 {
+    display: flex;
+    flex-direction: column;
+    margin-right: 0;
+  }
+  .user__comment__container2 > img {
+    width: 100%;
+  }
+  .name__area2 {
+    text-align: end;
+  }
+  .arrow__right,
+  .arrow__left {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+}

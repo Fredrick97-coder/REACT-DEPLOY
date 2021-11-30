@@ -1,0 +1,93 @@
+.container__updated {
+  height: auto;
+  width: 100%;
+  background: rgba(217, 221, 219, 0.2);
+  margin-bottom: 20px;
+}
+
+.container__updated > h2 {
+  text-align: center;
+  font-weight: 600;
+  color: #002053;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.form__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.form__wrapper > svg {
+  font-size: 500px;
+  fill: #002053;
+  margin-left: 20px;
+  stroke: black;
+  stroke-width: 0.1;
+}
+
+.form__container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin-right: 50px;
+}
+
+.form__container > p {
+  word-wrap: wrap;
+}
+
+.form__container__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__container__wrapper .input__area {
+  margin: 10px 0;
+}
+
+.form__container__wrapper .input__area > h4 {
+  color: #001a3b;
+}
+.form__container__wrapper .input__area > input {
+  height: 50px;
+  width: 500px;
+  padding-left: 20px;
+  outline: none;
+  margin: 10px 0 10px;
+  border: 1px solid #1c6ea4;
+}
+
+.form__container__wrapper > .radio__btn {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.form__container__wrapper > .btn.btn-primary {
+  width: 100px;
+  border-radius: 50px;
+  color: #001a3b;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 900px) {
+  .form__wrapper {
+    flex-direction: column;
+  }
+  .form__container {
+    margin: 0;
+    width: 100%;
+  }
+  .form__container__wrapper .input__area > input {
+    width: 100%;
+  }
+  .form__wrapper > svg {
+    font-size: 400px;
+    margin-bottom: 15px;
+  }
+  .form__container__wrapper > .btn.btn-primary {
+    margin-bottom: 10px;
+  }
+}
