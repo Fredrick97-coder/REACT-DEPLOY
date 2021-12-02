@@ -12,8 +12,12 @@ export function TrendingJobs() {
   if (error) return <pre>{error.message}</pre>
 
   return (
-    <div className="trending__jobs">
+    <div className="trending__jobs" id="trending">
       <h4 className="header__trending">Trending Jobs</h4>
+      <h6 style={{ textAlign: 'center' }}>
+        {data.allPosts.length === 0 ? 'There are no jobs available' : ''}
+      </h6>
+
       <div className="trending__card__container">
         {data.allPosts.map((job) => {
           const { _id, title, venue, hours, img, jobType } = job
@@ -46,7 +50,7 @@ export function TrendingJobs() {
                   </div>
                 </div>
               </div>
-              <Link to={`/joblist/${_id}`}>
+              <Link to={`/jobs/details/${_id}`}>
                 <h5
                   style={{
                     fontSize: '15px',

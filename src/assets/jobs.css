@@ -21,7 +21,7 @@
   /* border-radius: 10px; */
   padding-left: 20px;
   padding-top: 30px;
-  margin: 10px 10px 10px 0;
+  margin: 0px 10px 10px 0;
 }
 
 .job__card__container .side__decor {
@@ -152,6 +152,12 @@
 }
 
 /* Media queries */
+
+@media screen and (max-width: 947px) {
+  .side__content {
+    top: 70%;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .job__container__wrapper {

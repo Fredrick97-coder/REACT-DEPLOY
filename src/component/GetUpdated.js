@@ -2,114 +2,83 @@ import React, { useState } from 'react'
 import '../assets/getupdated.css'
 import { ImUsers } from 'react-icons/im'
 import { toast } from 'react-toastify'
-import { useMutation, gql } from '@apollo/client'
-// import { ADD_NEWS } from '../graphql/mutations'
-
-const ADD_NEWS = gql`
-  mutation AddNews(
-    $name: String!
-    $email: String!
-    $phone: String!
-    $message: String!
-  ) {
-    newNewsLetter(
-      name: $name
-      email: $email
-      phone: $phone
-      message: $message
-    ) {
-      name
-      email
-      phone
-      message
-    }
-  }
-`
+import { useMutation } from '@apollo/react-hooks'
+import { NEWS_SUBSCRIPTION } from '../graphql/mutations'
 
 function GetUpdated() {
-  const [newName, setNewName] = useState('')
-  const [newEmail, setNewEmail] = useState('')
-  const [toggle, setToggle] = useState(false)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [newNews, { loading, error }] = useMutation(NEWS_SUBSCRIPTION)
 
-  let name, email
-
-  const [createNews] = useMutation(ADD_NEWS)
-
-  const handleSubmit = async (e) => {
+  function handleSubmit(e) {
     e.preventDefault()
 
-    createNews({
+    newNews({
       variables: {
-        name: name.value,
-        email: email.value,
+        name,
+        email,
       },
     })
 
-    setNewName('')
-    setNewEmail('')
+    setName('')
+    setEmail('')
+    toast.success(
+      'You have successfully subscribed to our daily news on job updates',
+    )
   }
 
-  const notify = () =>
-    toast(
-      'Thanks for subscribing to B2B Agency regular feeds, we will always update you on trending jobs',
-    )
-
   return (
-    <div className="container__updated">
+    <div className="container__updated" id="newsletter">
       <h2>Get Updated</h2>
       <div className="form__wrapper">
         <ImUsers />
         <div className="form__container">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, ea
-            ab. Temporibus possimus, corrupti placeat deleniti fugit voluptatem
-            repellat rem!
-          </p>
+          <h4 style={{ fontFamily: 'Poppins' }}>
+            Join our weekly newsletter updates to get the latest job posting,
+            recommendations and available traings straight from your inbox
+          </h4>
           <form className="form__container__wrapper" onSubmit={handleSubmit}>
             <div className="input__area">
               <h4>Name</h4>
               <input
-                ref={(value) => (name = value)}
-                id="name"
-                value={newName}
+                value={name}
                 type="text"
                 placeholder="Enter name here"
-                onChange={(e) => setNewName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 required
               />
               <h4>Email</h4>
               <input
-                ref={(value) => (email = value)}
-                id="email"
-                value={newEmail}
+                value={email}
                 type="email"
                 placeholder="Enter email here"
                 required
-                onChange={(e) => setNewEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="radio__btn">
-              <div>
+              {/* <div>
                 <input type="radio" unchecked />
                 <label style={{ paddingLeft: '10px' }}>Job Seeker</label>
               </div>
               <div>
                 <input
                   type="radio"
-                  value={toggle}
-                  onClick={() => {
-                    setToggle(true)
-                  }}
+                  // value={toggle}
+                  // onClick={() => {
+                  //   setToggle(true)
+                  // }}
                 />
                 <label style={{ paddingLeft: '10px' }}>Employer</label>
-              </div>
+              </div> */}
             </div>
-            <button type="submit" className="contact__btn" onClick={notify}>
+            <button type="submit" className="contact__btn" disabled={loading}>
               Submit
               {/* <a href="#" style={{ color: 'white', textDecoration: 'none' }}>
                 Submit
               </a> */}
             </button>
+            {error && <p>{error.message}</p>}
           </form>
         </div>
       </div>

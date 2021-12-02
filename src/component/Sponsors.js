@@ -5,7 +5,7 @@ import { ImAppleinc, ImFlattr, ImLastfm, ImPower, ImSvg } from 'react-icons/im'
 
 export default function Sponsors() {
   return (
-    <div className="sponsor">
+    <div className="sponsor" id="sponsors">
       <h2>Sponsors and Top Employers</h2>
       <div className="logos">
         <effect.Fade left>

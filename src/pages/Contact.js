@@ -1,42 +1,37 @@
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/react-hooks'
 import React, { useState } from 'react'
 import '../assets/contact.css'
 import { toast } from 'react-toastify'
-import { ADD_CONTACT } from '../graphql/mutations'
+import { NEW_CONTACT } from '../graphql/mutations'
 
 export default function Contact() {
-  const [newName, setNewName] = useState('')
-  const [newEmail, setNewEmail] = useState('')
-  const [newPhone, setNewPhone] = useState('')
-  const [newMessage, setNewMessage] = useState('')
-  const [createContact, { data, loading, error }] = useMutation(ADD_CONTACT)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [message, setMessage] = useState('')
+  const [newContact, { loading, error }] = useMutation(NEW_CONTACT)
 
-  if (loading) return 'loading...'
-  if (error) return `Submission error!${error.message}`
-  let name, email, phone, message
-
-  const handleSubmit = async (e) => {
+  function handleSubmit(e) {
     e.preventDefault()
 
-    createContact({
+    newContact({
       variables: {
-        name: name.value,
-        email: email.value,
-        phone: phone.value,
-        message: message.value,
+        name,
+        email,
+        phone,
+        message,
       },
     })
 
-    setNewName('')
-    setNewEmail('')
-    setNewPhone('')
-    setNewMessage('')
-  }
+    setName('')
+    setEmail('')
+    setPhone('')
+    setMessage('')
 
-  const notify = () =>
-    toast(
+    toast.success(
       'You have successfully sent a message to B2B Agency and we will get back to you shortly',
     )
+  }
 
   return (
     <div className="contact__container">
@@ -53,50 +48,42 @@ export default function Contact() {
             <div className="input one">
               <label className="contact__label">Name:</label>
               <input
-                ref={(value) => (name = value)}
-                id="name"
-                value={newName}
+                value={name}
                 type="text"
                 className="contact__input"
                 placeholder="Eg. John Smith"
                 required
-                onChange={(e) => setNewName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
 
             <div className="input two">
               <label className="contact__label">Email:</label>
               <input
-                ref={(value) => (email = value)}
-                id="email"
-                value={newEmail}
+                value={email}
                 type="email"
                 className="contact__input"
                 placeholder="Eg. loremipsum122@gmail.com"
                 required
-                onChange={(e) => setNewEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="input three">
               <label className="contact__label">Phone Number:</label>
               <input
-                ref={(value) => (phone = value)}
-                id="phone"
-                value={newPhone}
+                value={phone}
                 type="text"
                 className="contact__input"
                 placeholder="Eg. 233545200015"
                 required
-                onChange={(e) => setNewPhone(e.target.value)}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
 
             <div className="input four">
               <label className="contact__label">Message:</label>
               <textarea
-                ref={(value) => (message = value)}
-                id="message"
-                value={newMessage}
+                value={message}
                 name=""
                 cols="30"
                 rows="10"
@@ -105,15 +92,16 @@ export default function Contact() {
             "
                 className="contact__textarea"
                 required
-                onChange={(e) => setNewMessage(e.target.value)}
+                onChange={(e) => setMessage(e.target.value)}
               />
             </div>
             <div className="post__btn__container">
-              <button className="contact__btn" type="submit" onClick={notify}>
+              <button className="contact__btn" disabled={loading} type="submit">
                 Submit
               </button>
             </div>
             <p className="contact__number">Call us on +233 26 698 1426 </p>
+            {error && <p>{error.message}</p>}
           </form>
         </div>
       </div>

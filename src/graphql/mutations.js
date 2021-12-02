@@ -25,17 +25,17 @@ export const USER_CREATE = gql`
   }
 `
 
-export const ADD_NEWS = gql`
-  mutation AddNews($input: NewsLetterInput!) {
-    newNewsLetter(input: $input) {
-      ...newsLetter
-    }
-  }
-  ${NEWS_LETTER}
-`
+// export const ADD_NEWS = gql`
+//   mutation newNews($input: NewsInput!) {
+//     newNews(input: $input) {
+//       ...newsLetter
+//     }
+//   }
+//   ${NEWS_LETTER}
+// `
 
 export const ADD_POST = gql`
-  mutation AddPost($input: PostInput!) {
+  mutation newPost($input: PostInput!) {
     newPost(input: $input) {
       ...postData
     }
@@ -44,7 +44,7 @@ export const ADD_POST = gql`
 `
 
 export const ADD_CONTACT = gql`
-  mutation AddContact($input: ContactInput!) {
+  mutation NewContact($input: ContactInput!) {
     newContact(input: $input) {
       ...userContact
     }
@@ -86,3 +86,71 @@ export const ADD_JOB_SEEKER = gql`
 //   }
 //   ${POST_DATA}
 // `
+
+export const NEW_CONTACT = gql`
+  mutation NewContact(
+    $name: String!
+    $email: String!
+    $phone: String!
+    $message: String!
+  ) {
+    newContact(
+      input: { name: $name, email: $email, phone: $phone, message: $message }
+    ) {
+      name
+      email
+      phone
+      message
+    }
+  }
+`
+
+export const NEW_JOB = gql`
+  mutation NewPost(
+    $title: String!
+    $description: String!
+    $companyName: String!
+    $hours: String!
+    $img: String!
+    $venue: String!
+    $email: String!
+    $employerName: String!
+    $phone: String!
+    $jobType: String!
+  ) {
+    newPost(
+      input: {
+        title: $title
+        description: $description
+        companyName: $companyName
+        hours: $hours
+        img: $img
+        venue: $venue
+        email: $email
+        employerName: $employerName
+        phone: $phone
+        jobType: $jobType
+      }
+    ) {
+      title
+      description
+      companyName
+      hours
+      img
+      venue
+      email
+      employerName
+      phone
+      jobType
+    }
+  }
+`
+
+export const NEWS_SUBSCRIPTION = gql`
+  mutation NewNews($name: String!, $email: String!) {
+    newNews(input: { name: $name, email: $email }) {
+      name
+      email
+    }
+  }
+`

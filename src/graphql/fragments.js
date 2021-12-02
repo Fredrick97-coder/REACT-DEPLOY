@@ -24,12 +24,12 @@ export const CREATE_JOB_SEEKER = gql`
   }
 `
 
-export const NEWS_LETTER = gql`
-  fragment newsLetter on NewsLetter {
-    name
-    email
-  }
-`
+// export const NEWS_LETTER = gql`
+//   fragment newsLetter on NewsLetter {
+//     name
+//     email
+//   }
+// `
 
 export const CONTACT_DATA = gql`
   fragment userContact on Contact {
@@ -39,6 +39,24 @@ export const CONTACT_DATA = gql`
     message
   }
 `
+
+// const ADD_CONTACT = gql`
+//   mutation NewContact(
+//     $name: String!
+//     $email: String!
+//     $phone: String!
+//     $message: String!
+//   ) {
+//     newContact(
+//       input: { name: $name, email: $email, phone: $phone, message: $message }
+//     ) {
+//       name
+//       email
+//       phone
+//       message
+//     }
+//   }
+// `
 
 export const POST_DATA = gql`
   fragment postData on Post {

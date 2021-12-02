@@ -14,6 +14,7 @@
 }
 
 .post__card__container {
+  position: relative;
   background-color: white;
   margin: 20px;
   width: 100%;
@@ -67,6 +68,7 @@
 }
 
 .right__input {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -104,6 +106,14 @@
   color: #001a3b;
 }
 
+.image__link__generator {
+  display: flex;
+  flex-direction: column;
+}
+
+.post__input.img {
+  visibility: hidden;
+}
 /* .post__card__container {
   height: 100vh;
 }

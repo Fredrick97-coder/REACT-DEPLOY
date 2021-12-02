@@ -2,22 +2,53 @@ import React, { useState, useMemo, useEffect } from 'react'
 import '../assets/jobdetails.css'
 import { toast } from 'react-toastify'
 import { useLazyQuery, useMutation } from '@apollo/react-hooks'
-import { ADD_NEWS } from '../graphql/mutations'
 import { SINGLE_POST } from '../graphql/queries'
-import omitDeep from 'omit-deep'
+// import omitDeep from 'omit-deep'
 import { useParams } from 'react-router-dom'
-import { ADD_JOB_SEEKER } from '../graphql/mutations'
+import { ADD_JOB_SEEKER, NEWS_SUBSCRIPTION } from '../graphql/mutations'
+import { gql } from 'apollo-boost'
+
+const SEEKER = gql`
+  mutation NewJobSeeker(
+    $username: String!
+    $title: String!
+    $companyName: String!
+    $userphone: String!
+    $location: String!
+    $useremail: String!
+  ) {
+    newJobSeeker(
+      input: {
+        username: $username
+        title: $title
+        companyName: $companyName
+        userphone: $userphone
+        location: $location
+        useremail: $useremail
+      }
+    ) {
+      username
+      title
+      userphone
+      location
+      useremail
+      companyName
+    }
+  }
+`
 
 function SinglePost() {
-  const [jobUser, setJobUser] = useState('')
-  const [userEmail, setUserEmail] = useState('')
-  const [userPhone, setUserPhone] = useState('')
-  const [userTitle, setUserTitle] = useState('')
-  const [userCompanyName, setUserCompanyName] = useState('')
-  const [userLocation, setUserLocation] = useState('')
+  const [username, setUserName] = useState('')
+  const [useremail, setUserEmail] = useState('')
+  const [userphone, setUserPhone] = useState('')
+  const [title, setTitle] = useState('')
+  const [companyName, setCompanyName] = useState('')
+  const [location, setLocation] = useState('')
   const [getSinglePost, { data: singlePost }] = useLazyQuery(SINGLE_POST)
   const [newName, setNewName] = useState('')
   const [newEmail, setNewEmail] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [values, setValues] = useState({
     img: '',
     description: '',
@@ -31,39 +62,32 @@ function SinglePost() {
     jobType: '',
   })
 
-  let username, userphone, companyName, title, useremail, location
-  let name, email
   // JobSeekers
-  const [createJobSeeker] = useMutation(ADD_JOB_SEEKER)
+  const [newJobSeeker, { loading, error }] = useMutation(SEEKER)
 
-  const handleJobSeekerSubmit = async (e) => {
+  function handleJobSeekerSubmit(e) {
     e.preventDefault()
+    newJobSeeker({
+      variables: {
+        username,
+        title,
+        userphone,
+        location,
+        useremail,
+        companyName,
+      },
+    })
 
-    try {
-      await createJobSeeker({
-        variables: {
-          username: username.value,
-          useremail: useremail.value,
-          userphone: userphone.value,
-          companyName: companyName.value,
-          title: title.value,
-          location: location.value,
-        },
-      })
+    setUserName('')
+    setUserEmail('')
+    setUserPhone('')
+    setTitle('')
+    setCompanyName('')
+    setLocation('')
 
-      setJobUser('')
-      setUserEmail('')
-      setUserPhone('')
-      setUserTitle('')
-      setUserCompanyName('')
-      setUserLocation('')
-
-      toast.success(
-        'You have successfully sent an application to this job. We will review it and get back to you shortly.',
-      )
-    } catch (err) {
-      toast.error(err.message)
-    }
+    toast.success(
+      'You have successfully sent an application to this job. We will review it and get back to you shortly.',
+    )
   }
 
   // const jobSeekerNotify = () =>
@@ -93,26 +117,24 @@ function SinglePost() {
   }, [singlePost])
 
   //Creating newsletter
-  const [createNews] = useMutation(ADD_NEWS)
+  const [createNews] = useMutation(NEWS_SUBSCRIPTION)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     createNews({
       variables: {
-        name: name.value,
-        email: email.value,
+        name,
+        email,
       },
     })
 
-    setNewName('')
-    setNewEmail('')
-  }
-
-  const notify = () =>
-    toast(
-      'Thanks for subscribing to B2B Agency regular feeds, we will always update you on trending jobs',
+    setName('')
+    setEmail('')
+    toast.success(
+      'You have successfully subscribed to our daily news on job updates',
     )
+  }
 
   useEffect(() => {
     getSinglePost({ variables: { postId: postid } })
@@ -201,7 +223,7 @@ function SinglePost() {
             <hr />
           </div>
           <hr />
-          {JSON.stringify(values)}
+          {/* {JSON.stringify(values)} */}
 
           {/* JobSeeker Application */}
 
@@ -241,18 +263,14 @@ function SinglePost() {
               className="job__application__form"
             >
               <input
-                ref={(value) => (username = value)}
-                id="username"
-                value={jobUser}
+                value={username}
                 type="text"
                 placeholder="Your Name"
                 required
-                onChange={(e) => setJobUser(e.target.value)}
+                onChange={(e) => setUserName(e.target.value)}
               />
               <input
-                ref={(value) => (useremail = value)}
-                id="useremail"
-                value={userEmail}
+                value={useremail}
                 type="email"
                 placeholder="Email"
                 required
@@ -268,22 +286,18 @@ function SinglePost() {
               className="job__application__form"
             >
               <input
-                ref={(value) => (companyName = value)}
-                id="companyName"
-                value={userCompanyName}
+                value={companyName}
                 type="text"
                 placeholder="Company Name"
                 required
-                onChange={(e) => setUserCompanyName(e.target.value)}
+                onChange={(e) => setCompanyName(e.target.value)}
               />
               <input
-                ref={(value) => (title = value)}
-                id="title"
-                value={userTitle}
+                value={title}
                 type="text"
                 placeholder="Job Title"
                 required
-                onChange={(e) => setUserTitle(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
             <div
@@ -295,34 +309,27 @@ function SinglePost() {
               className="job__application__form"
             >
               <input
-                ref={(value) => (userphone = value)}
-                id="userphone"
-                value={userPhone}
+                value={userphone}
                 type="text"
                 placeholder="Phone Number"
                 required
                 onChange={(e) => setUserPhone(e.target.value)}
               />
               <input
-                ref={(value) => (location = value)}
-                id="location"
-                value={userLocation}
+                value={location}
                 type="text"
                 placeholder="Your Location"
                 required
-                onChange={(e) => setUserLocation(e.target.value)}
+                onChange={(e) => setLocation(e.target.value)}
               />
             </div>
             <div
               className="section__four"
               style={{ margin: '10px 0px 10px 20px' }}
-            >
-              {/* <input type="file" /> */}
-            </div>
+            ></div>
             <hr />
             <div className="section__five">
               <button
-                // onClick={jobSeekerNotify}
                 type="submit"
                 className="btn btn-primary"
                 style={{ margin: '10px 0px 10px 20px' }}
@@ -330,12 +337,13 @@ function SinglePost() {
                 Apply Now
               </button>
             </div>
+            {error && <p>{error.message}</p>}
           </form>
         </div>
 
         {/* NewsLetter */}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="newsletter">
           <div className="get__intouch">
             <div className="stay__updated">
               <h3>Stay Updated</h3>
@@ -346,20 +354,16 @@ function SinglePost() {
             </div>
             <div className="input__fields">
               <input
-                ref={(value) => (name = value)}
-                id="name"
-                value={newName}
+                value={name}
                 type="text"
                 placeholder="First Name"
-                onChange={(e) => setNewName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
               <input
-                ref={(value) => (email = value)}
-                id="email"
-                value={newEmail}
+                value={email}
                 type="email"
                 placeholder="email"
-                onChange={(e) => setNewEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="subscription">
@@ -373,11 +377,12 @@ function SinglePost() {
                   <span>Job Creator</span>
                 </div>
               </div>
-              <button type="submit" onClick={notify}>
+              <button type="submit" disabled={loading}>
                 SUBSCRIBE
               </button>
             </div>
           </div>
+          {error && <p>{error.message}</p>}
         </form>
       </div>
       <div

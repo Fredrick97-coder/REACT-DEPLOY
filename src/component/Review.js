@@ -16,30 +16,30 @@ function Reviews() {
           />
           <div className="user__comments">
             <p className="py-3">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Distinctio suscipit obcaecati voluptatum illo et perferendis!
+              Business2Business has always been the go-to advertisement firm for
+              my company. I love their services and hospitality.
             </p>
             <div className="name__area1">
-              <h4>Fredrick Otabil</h4>
-              <p>DevOps Developer</p>
+              <h4>Sarah Winfred</h4>
+              <p>Operations Manager|Unified</p>
             </div>
           </div>
         </div>
         <div className="section2">
           <div className="user__comment__container2">
             <img
-              src="https://images.pexels.com/photos/6170558/pexels-photo-6170558.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+              src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
               class=""
               alt=""
             />
             <div className="user__comments">
               <p className="py-3">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Distinctio suscipit obcaecati voluptatum illo et perferendis!
+                I came across this agency back in 2017 when I was searching for
+                a job. Thier composure, setting and willing to serve is awesome
               </p>
               <div className="name__area2">
-                <h4>Sarah Otabil</h4>
-                <p>SysOps Developer</p>
+                <h4>Michael Todd</h4>
+                <p>Executive Director|SpringField</p>
               </div>
             </div>
           </div>

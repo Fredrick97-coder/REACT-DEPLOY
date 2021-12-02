@@ -24,7 +24,6 @@ export const GET_ALL_POSTS = gql`
     allPosts {
       ...postData
     }
-    totalPosts
   }
   ${POST_DATA}
 `

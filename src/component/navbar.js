@@ -13,12 +13,11 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [{ user }, dispatch] = useStateValue()
 
-  let navigate = useNavigate()
+  // let navigate = useNavigate()
 
   const handleAuthentication = () => {
     if (user) {
       auth.signOut()
-      navigate('/')
     }
   }
 

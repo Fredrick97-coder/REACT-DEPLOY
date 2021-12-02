@@ -9,8 +9,7 @@ import { auth } from '../../firebase'
 
 const Login = () => {
   let navigate = useNavigate()
-
-  const [{}, dispatch] = useStateValue()
+  const [{ user }, dispatch] = useStateValue()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   // const [loading, setLoading] = useState(false)
@@ -29,6 +28,7 @@ const Login = () => {
           type: 'SET_USER',
           payload: { email: user.email, token: idTokenResult.token },
         })
+        console.log(user)
         toast.success(`User ${auth.user.email} as successfully logged in`)
         navigate('/')
       })

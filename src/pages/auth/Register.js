@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-// import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import '../../assets/register.css'
-// import { useStateValue } from '../../../context/StateProvider'
+import { useStateValue } from '../../context/StateProvider'
 import { auth } from '../../firebase'
 import { useNavigate } from 'react-router-dom'
 
 function Register() {
-  // const [{ user }, dispatch] = useStateValue()
-  // const history = useHistory()
+  const [{ user }, dispatch] = useStateValue()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -22,26 +20,21 @@ function Register() {
       toast.error('Email and password is required')
       return
     }
-    const config = {
-      url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
-      handleCodeInApp: true,
-    }
-    auth.sendSignInLinkToEmail(email, config) &&
-      auth
-        .createUserWithEmailAndPassword(email, password)
-        .then((auth) => {
-          console.log(auth)
-          if (auth) {
-            toast.success(
-              `Email is sent to ${email}. click the link to verify your account...`,
-            )
-            navigate('/login')
-          }
-        })
-        .catch((err) => {
-          toast.error(err.message)
-          setLoading(false)
-        })
+
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((auth) => {
+        if (auth) {
+          toast.success(
+            `You have successfully created an account with B2B Agency...`,
+          )
+          navigate('/')
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message)
+        setLoading(false)
+      })
   }
 
   return (

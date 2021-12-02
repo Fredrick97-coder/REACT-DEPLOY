@@ -9,9 +9,9 @@ function Footer() {
       <div className="footer__link">
         <h2>Jobs</h2>
         {/* <a href="#job"> Job Search</a> */}
-        <Link to="/">Job Search</Link>
+        <a href="#search">Job Search</a>
         <Link to="/jobs">Browse Jobs</Link>
-        <a href="#job">Trending Jobs</a>
+        <a href="#trending">Trending Jobs</a>
         <Link to="/">Help</Link>
       </div>
       <div className="footer__link">
@@ -25,8 +25,8 @@ function Footer() {
         <h2>B2B DESK</h2>
         <Link to="/contact">Contact Us</Link>
         <Link to="/contact">Lodge Complaint</Link>
-        <Link to="/">Newsletters</Link>
-        <Link to="/">Sponsors and Top Employers</Link>
+        <a href="#newsletter">Newsletters</a>
+        <a href="#sponsors">Sponsors and Top Employers</a>
       </div>
       <div className="footer__logo__section">
         <img src={logo} alt="b2b agency" />
