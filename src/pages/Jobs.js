@@ -44,7 +44,7 @@ export default function Jobs() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
   return (
     <>
-      {/* <Search /> */}
+      <Search />
       <div className="jobs">
         <div className="job__container__wrapper">
           {data.allPosts.map((post) => {
