@@ -75,7 +75,7 @@ function App() {
             element={<PostJobs />}
           />
           <Route path="/contact" caseSensitive={false} element={<Contact />} />
-          <Route path="*" caseSension={false} element={<NotFound />} />
+          {/* <Route path="*" caseSension={false} element={<NotFound />} /> */}
         </Routes>
 
         <Footer />
